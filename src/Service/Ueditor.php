@@ -36,6 +36,7 @@ class Ueditor extends \miaoxing\plugin\BaseService
     public function getConfigJson()
     {
         $app = $this->app->getNamespace();
+
         return json_encode([
             'imageUrl' => $this->imageUrl . $this->url->append('/ueditor/image-upload', ['app' => $app]),
             'catcherUrl' => $this->imageUrl . $this->url->append('/ueditor/get-remote-image', ['app' => $app]),

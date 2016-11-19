@@ -22,8 +22,8 @@ class Uploader
     private $fileSize;             //文件大小
     private $fileType;             //文件类型
     private $stateInfo;            //上传状态信息,
-    private $stateMap = array(    //上传状态映射表，国际化用户需考虑此处数据的国际化
-        "SUCCESS",                //上传成功标记，在UEditor中内不可改变，否则flash判断会出错
+    private $stateMap = [    //上传状态映射表，国际化用户需考虑此处数据的国际化
+        'SUCCESS',                //上传成功标记，在UEditor中内不可改变，否则flash判断会出错
         // "文件大小超出 upload_max_filesize 限制" ,
         '\u6587\u4ef6\u5927\u5c0f\u8d85\u51fa\u9650\u5236',
         // "文件大小超出 MAX_FILE_SIZE 限制" ,
@@ -47,8 +47,8 @@ class Uploader
         //"UNKNOWN" => "未知错误" ,
         'UNKNOWN' => '\u672a\u77e5\u9519\u8bef',
         // "MOVE" => "文件保存时出错"
-        'MOVE' => '\u6587\u4ef6\u4fdd\u5b58\u65f6\u51fa\u9519'
-    );
+        'MOVE' => '\u6587\u4ef6\u4fdd\u5b58\u65f6\u51fa\u9519',
+    ];
 
     /**
      * 构造函数
@@ -72,9 +72,10 @@ class Uploader
     private function upFile($base64)
     {
         //处理base64上传
-        if ("base64" == $base64) {
+        if ('base64' == $base64) {
             $content = $_POST[$this->fileField];
             $this->base64ToImage($content);
+
             return;
         }
 
@@ -82,14 +83,17 @@ class Uploader
         $file = $this->file = $_FILES[$this->fileField];
         if (!$file) {
             $this->stateInfo = $this->getStateInfo('POST');
+
             return;
         }
         if ($this->file['error']) {
             $this->stateInfo = $this->getStateInfo($file['error']);
+
             return;
         }
         if (!is_uploaded_file($file['tmp_name'])) {
-            $this->stateInfo = $this->getStateInfo("UNKNOWN");
+            $this->stateInfo = $this->getStateInfo('UNKNOWN');
+
             return;
         }
 
@@ -98,11 +102,13 @@ class Uploader
         $this->fileType = $this->getFileExt();
 
         if (!$this->checkSize()) {
-            $this->stateInfo = $this->getStateInfo("SIZE");
+            $this->stateInfo = $this->getStateInfo('SIZE');
+
             return;
         }
         if (!$this->checkType()) {
-            $this->stateInfo = $this->getStateInfo("TYPE");
+            $this->stateInfo = $this->getStateInfo('TYPE');
+
             return;
         }
         /*$this->fullName = $this->getFolder() . '/' . $this->getName();
@@ -114,14 +120,14 @@ class Uploader
         $this->fullName = $this->getFolder() . '/' . $this->getName();
         if ($this->stateInfo == $this->stateMap[0]) {
             if (!defined('SAE_TMP_PATH')) {
-                if (!move_uploaded_file($file["tmp_name"], $this->fullName)) {
-                    $this->stateInfo = $this->getStateInfo("MOVE");
+                if (!move_uploaded_file($file['tmp_name'], $this->fullName)) {
+                    $this->stateInfo = $this->getStateInfo('MOVE');
                 }
             } else {
                 $st = new SaeStorage();
-                $url = $st->upload('upload', date('Ym') . '/' . $this->getName(), $file["tmp_name"]);
+                $url = $st->upload('upload', date('Ym') . '/' . $this->getName(), $file['tmp_name']);
                 if (!$url) {
-                    $this->stateInfo = $this->getStateInfo("MOVE");
+                    $this->stateInfo = $this->getStateInfo('MOVE');
                 } else {
                     $this->fullName = $url;
                 }
@@ -137,15 +143,16 @@ class Uploader
     private function base64ToImage($base64Data)
     {
         $img = base64_decode($base64Data);
-        $this->fileName = time() . rand(1, 10000) . ".png";
+        $this->fileName = time() . rand(1, 10000) . '.png';
         $this->fullName = $this->getFolder() . '/' . $this->fileName;
         if (!file_put_contents($this->fullName, $img)) {
-            $this->stateInfo = $this->getStateInfo("IO");
+            $this->stateInfo = $this->getStateInfo('IO');
+
             return;
         }
-        $this->oriName = "";
+        $this->oriName = '';
         $this->fileSize = strlen($img);
-        $this->fileType = ".png";
+        $this->fileType = '.png';
     }
 
     /**
@@ -154,14 +161,14 @@ class Uploader
      */
     public function getFileInfo()
     {
-        return array(
-            "originalName" => $this->oriName,
-            "name" => $this->fileName,
-            "url" => $this->fullName,
-            "size" => $this->fileSize,
-            "type" => $this->fileType,
-            "state" => $this->stateInfo
-        );
+        return [
+            'originalName' => $this->oriName,
+            'name' => $this->fileName,
+            'url' => $this->fullName,
+            'size' => $this->fileSize,
+            'type' => $this->fileType,
+            'state' => $this->stateInfo,
+        ];
     }
 
     /**
@@ -171,7 +178,7 @@ class Uploader
      */
     private function getStateInfo($errCode)
     {
-        return !$this->stateMap[$errCode] ? $this->stateMap["UNKNOWN"] : $this->stateMap[$errCode];
+        return !$this->stateMap[$errCode] ? $this->stateMap['UNKNOWN'] : $this->stateMap[$errCode];
     }
 
     /**
@@ -183,8 +190,7 @@ class Uploader
         $count = 0;
         $dir = $this->getFolder();
         $timeStamp = time();
-        if ($format = $this->config["fileNameFormat"]) {
-
+        if ($format = $this->config['fileNameFormat']) {
             $ext = $this->getFileExt();
             $oriName = substr($this->oriName, 0, strrpos($this->oriName, '.'));
             $randNum = rand(1, 10000000000);
@@ -192,16 +198,16 @@ class Uploader
             //过滤非法字符
             $format = preg_replace("/[\|\?\"\<\>\/\*\\\\]+/", '', $format);
 
-            $d = split('-', date("Y-y-m-d-H-i-s"));
-            $format = str_replace("{yyyy}", $d[0], $format);
-            $format = str_replace("{yy}", $d[1], $format);
-            $format = str_replace("{mm}", $d[2], $format);
-            $format = str_replace("{dd}", $d[3], $format);
-            $format = str_replace("{hh}", $d[4], $format);
-            $format = str_replace("{ii}", $d[5], $format);
-            $format = str_replace("{ss}", $d[6], $format);
-            $format = str_replace("{time}", $timeStamp, $format);
-            $format = str_replace("{filename}", $oriName, $format);
+            $d = split('-', date('Y-y-m-d-H-i-s'));
+            $format = str_replace('{yyyy}', $d[0], $format);
+            $format = str_replace('{yy}', $d[1], $format);
+            $format = str_replace('{mm}', $d[2], $format);
+            $format = str_replace('{dd}', $d[3], $format);
+            $format = str_replace('{hh}', $d[4], $format);
+            $format = str_replace('{ii}', $d[5], $format);
+            $format = str_replace('{ss}', $d[6], $format);
+            $format = str_replace('{time}', $timeStamp, $format);
+            $format = str_replace('{filename}', $oriName, $format);
 
             if (preg_match("/\{rand\:([\d]*)\}/i", $format, $matches)) {
                 $format = preg_replace("/\{rand\:[\d]*\}/i", substr($randNum, 0, $matches[1]), $format);
@@ -219,6 +225,7 @@ class Uploader
                 $fileName = time() . rand(1, 10000) . $this->getFileExt();
             } while (file_exists($dir . '/' . $fileName));
         }
+
         return $this->fileName = $fileName;
     }
 
@@ -228,16 +235,16 @@ class Uploader
      */
     private function checkType()
     {
-        return in_array($this->getFileExt(), $this->config["allowFiles"]);
+        return in_array($this->getFileExt(), $this->config['allowFiles']);
     }
 
     /**
      * 文件大小检测
      * @return bool
      */
-    private function  checkSize()
+    private function checkSize()
     {
-        return $this->fileSize <= ($this->config["maxSize"] * 1024);
+        return $this->fileSize <= ($this->config['maxSize'] * 1024);
     }
 
     /**
@@ -246,7 +253,7 @@ class Uploader
      */
     private function getFileExt()
     {
-        return strtolower(strrchr($this->file["name"], '.'));
+        return strtolower(strrchr($this->file['name'], '.'));
     }
 
     /**
@@ -270,11 +277,11 @@ class Uploader
 
     private function getFolder()
     {
-        $pathStr = $this->config["savePath"];
-        if (strrchr($pathStr, "/") != "/") {
-            $pathStr .= "/";
+        $pathStr = $this->config['savePath'];
+        if (strrchr($pathStr, '/') != '/') {
+            $pathStr .= '/';
         }
-        $pathStr .= date("Ymd");
+        $pathStr .= date('Ymd');
         if (!defined('SAE_TMP_PATH')) {
             if (!file_exists($pathStr)) {
                 if (!mkdir($pathStr, 0777, true)) {
@@ -282,6 +289,7 @@ class Uploader
                 }
             }
         }
+
         return $pathStr;
     }
 }

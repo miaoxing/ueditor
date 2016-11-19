@@ -8,7 +8,7 @@ use Wei\Request;
 class Ueditor extends \miaoxing\plugin\BaseController
 {
     protected $guestPages = [
-        'ueditor' // 设置为不用登录,因为上传的IP地址和域名不共享登录态
+        'ueditor', // 设置为不用登录,因为上传的IP地址和域名不共享登录态
     ];
 
     public function imageUploadAction($req)
@@ -16,11 +16,11 @@ class Ueditor extends \miaoxing\plugin\BaseController
         // 上传配置
         $config = [
             'savePath' => [
-                wei()->upload->getDir()
+                wei()->upload->getDir(),
             ],
             'maxSize' => 1000, // 单位KB
             'allowFiles' => ['.gif', '.png', '.jpg', '.jpeg', '.bmp'],
-            'fileNameFormat' => $_POST['fileNameFormat']
+            'fileNameFormat' => $_POST['fileNameFormat'],
         ];
 
         // 上传图片框中的描述表单名称
@@ -30,6 +30,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
         // 获取存储目录
         if ($req('fetch')) {
             $this->response->setHeader('Content-Type', 'text/javascript');
+
             return 'updateSavePath(' . json_encode($config['savePath']) . ');';
         }
 
@@ -50,7 +51,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
         // 生成上传实例对象并完成上传
         $up = new Uploader('upfile', $config);
 
-        /**
+        /*
          * 得到上传文件所对应的各个参数,数组结构
          * array(
          *     "originalName" => "",   //原始文件名
@@ -71,7 +72,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
             }
         }
 
-        /**
+        /*
          * 向浏览器返回数据json数据
          * {
          *   'url'      :'a.jpg',   //保存后的文件路径
@@ -84,7 +85,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
             'url' => $info['url'],
             'title' => $title,
             'original' => $info['originalName'],
-            'state' => $info['state']
+            'state' => $info['state'],
         ]);
     }
 
@@ -104,7 +105,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
         // ue_separate_ue 用于传递数据分割符号
         $imgUrls = explode('ue_separate_ue', $uri);
 
-        $tmpNames = array();
+        $tmpNames = [];
         foreach ($imgUrls as $imgUrl) {
             $ret = wei()->file->upload($imgUrl);
             if ($ret['code'] === 1) {
@@ -115,11 +116,12 @@ class Ueditor extends \miaoxing\plugin\BaseController
         }
 
         $this->response->setHeader('Access-Control-Allow-Origin', '*');
+
         return $this->response->json([
             'url' => implode('ue_separate_ue', $tmpNames),
             'urls' => $tmpNames,
             'tip' => '远程图片抓取完成',
-            'srcUrl' => $uri
+            'srcUrl' => $uri,
         ]);
     }
 }
