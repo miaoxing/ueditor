@@ -1,0 +1,23 @@
+{
+  "name": "miaoxing/ueditor",
+  "description": "Miaoxing UEditor Plugin",
+  "keywords": [
+    "miaoxing", "ueditor"
+  ],
+  "license": "MIT",
+  "require": {
+    "miaoxing/app": "dev-master@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Miaoxing\\Ueditor\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MiaoxingTest\\Ueditor\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
