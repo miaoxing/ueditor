@@ -17,19 +17,22 @@ matrix:
 services:
   - memcached
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - node_modules
+
 before_install:
   - phpenv config-add tests/travis.ini
+  - nvm install node
 
 install:
   - composer install --no-interaction
+  - bash vendor/miaoxing/plugin/build/install-travis.sh
 
 script:
-  - phpunit --verbose --stderr --coverage-clover build/logs/clover.xml
+  - bash vendor/miaoxing/plugin/build/build-travis.sh --coverage 32
 
 after_success:
   - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
   - travis_retry php coveralls.phar -v --exclude-no-stmt
-
-notifications:
-  webhooks:
-    - http://build.miaoxingyun.com/travis-notifications
