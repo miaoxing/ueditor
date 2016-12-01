@@ -20,12 +20,12 @@ class Ueditor extends \miaoxing\plugin\BaseController
             ],
             'maxSize' => 1000, // 单位KB
             'allowFiles' => ['.gif', '.png', '.jpg', '.jpeg', '.bmp'],
-            'fileNameFormat' => $_POST['fileNameFormat'],
+            'fileNameFormat' => $req['fileNameFormat'],
         ];
 
         // 上传图片框中的描述表单名称
-        $title = htmlspecialchars($_POST['pictitle'], ENT_QUOTES);
-        $path = htmlspecialchars($_POST['dir'], ENT_QUOTES);
+        $title = htmlspecialchars($req['pictitle'], ENT_QUOTES);
+        $path = htmlspecialchars($req['dir'], ENT_QUOTES);
 
         // 获取存储目录
         if ($req('fetch')) {
@@ -81,6 +81,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
          *   'state'    :'SUCCESS'  //上传状态，成功时返回SUCCESS,其他任何值将原样返回至图片上传框中
          * }
          */
+
         return $this->response->json([
             'url' => $info['url'],
             'title' => $title,

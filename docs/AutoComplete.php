@@ -1,6 +1,7 @@
 <?php
 
 namespace plugins\ueditor\docs {
+
     /**
      * @property    \Miaoxing\Ueditor\Service\Ueditor $ueditor Ueditor编辑器
      */
@@ -10,6 +11,7 @@ namespace plugins\ueditor\docs {
 }
 
 namespace {
+
     /**
      * @return \plugins\ueditor\docs\AutoComplete
      */

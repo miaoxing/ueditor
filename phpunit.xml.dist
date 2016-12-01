@@ -15,6 +15,9 @@
     <whitelist>
       <directory>src</directory>
       <directory>resource</directory>
+      <exclude>
+        <directory>src/Lib</directory>
+      </exclude>
     </whitelist>
   </filter>
 </phpunit>
