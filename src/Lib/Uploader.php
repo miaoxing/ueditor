@@ -2,8 +2,6 @@
 
 namespace Miaoxing\Ueditor\Lib;
 
-use plugins\ueditor\libs\SaeStorage;
-
 /**
  * Created by JetBrains PhpStorm.
  * User: taoqili

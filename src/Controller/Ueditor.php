@@ -51,7 +51,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
         // 生成上传实例对象并完成上传
         $up = new Uploader('upfile', $config);
 
-        /*
+        /**
          * 得到上传文件所对应的各个参数,数组结构
          * array(
          *     "originalName" => "",   //原始文件名
@@ -72,7 +72,7 @@ class Ueditor extends \miaoxing\plugin\BaseController
             }
         }
 
-        /*
+        /**
          * 向浏览器返回数据json数据
          * {
          *   'url'      :'a.jpg',   //保存后的文件路径
@@ -81,7 +81,6 @@ class Ueditor extends \miaoxing\plugin\BaseController
          *   'state'    :'SUCCESS'  //上传状态，成功时返回SUCCESS,其他任何值将原样返回至图片上传框中
          * }
          */
-
         return $this->response->json([
             'url' => $info['url'],
             'title' => $title,
