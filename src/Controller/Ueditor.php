@@ -5,7 +5,7 @@ namespace Miaoxing\Ueditor\Controller;
 use Miaoxing\Ueditor\Lib\Uploader;
 use Wei\Request;
 
-class Ueditor extends \miaoxing\plugin\BaseController
+class Ueditor extends \Miaoxing\Plugin\BaseController
 {
     protected $guestPages = [
         'ueditor', // 设置为不用登录,因为上传的IP地址和域名不共享登录态
