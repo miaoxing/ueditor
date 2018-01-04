@@ -6,7 +6,7 @@ namespace Miaoxing\Ueditor\Service;
  * @property \Wei\Url $url
  * @method string url($uri)
  */
-class Ueditor extends \miaoxing\plugin\BaseService
+class Ueditor extends \Miaoxing\Plugin\BaseService
 {
     /**
      * 上传图片的地址
