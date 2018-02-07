@@ -457,4 +457,10 @@ define(['module'], function (module) {
   window.UE = {
     getUEBasePath: getUEBasePath
   };
+
+  // 可以通过 jQuery 插件调用
+  $.fn.ueditor = function (options) {
+    UE.getEditor($(this).attr('id'), options || {});
+    return this;
+  };
 });
