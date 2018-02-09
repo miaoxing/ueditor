@@ -12,9 +12,6 @@
       'ueditor-all': {
         deps: ['ueditor-config']
       }
-    },
-    config: {
-      'ueditor-config': <?= $wei->ueditor->getConfigJson() ?>
     }
   });
 </script>
