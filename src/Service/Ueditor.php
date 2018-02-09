@@ -9,12 +9,11 @@ namespace Miaoxing\Ueditor\Service;
 class Ueditor extends \Miaoxing\Plugin\BaseService
 {
     /**
-     * 上传图片的地址
+     * 附加到图片签名的地址,如CDN域名
      *
      * @var string
-     * @todo rename 或者移到asset统一管理?
      */
-    protected $imageUrl;
+    protected $imagePath;
 
     /**
      * @return string
