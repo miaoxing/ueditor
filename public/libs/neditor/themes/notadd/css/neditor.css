@@ -2353,3 +2353,22 @@ div.edui-box {
 .edui-notadd  .edui-pastecontainer .edui-button  .edui-state-hover .edui-plaintxticon{
     background-position: -72px -34px;
 }
+
+/* 统一使用字体图标,解决svg和font切换导致图标抖动 */
+.edui-notadd .edui-toolbar .edui-button .edui-icon::before,
+.edui-notadd .edui-toolbar .edui-menubutton .edui-icon::before,
+.edui-notadd .edui-toolbar .edui-splitbutton .edui-icon::before {
+  display: block;
+}
+
+.edui-notadd .edui-toolbar .edui-button .edui-icon svg,
+.edui-notadd .edui-toolbar .edui-menubutton .edui-icon svg,
+.edui-notadd .edui-toolbar .edui-splitbutton .edui-icon svg {
+  display: none;
+}
+
+.edui-notadd .edui-toolbar .edui-button .edui-icon,
+.edui-notadd .edui-toolbar .edui-menubutton .edui-icon,
+.edui-notadd .edui-toolbar .edui-splitbutton .edui-icon {
+  color: #666666;
+}
