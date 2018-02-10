@@ -24,6 +24,8 @@ class Ueditor extends \Miaoxing\Plugin\BaseController
             $ret = wei()->file->upload(ltrim($result['url'], '/'));
             if ($ret['code'] === 1) {
                 $result['url'] = $ret['url'];
+            } else {
+                $result['state'] = $ret['message'];
             }
         }
 
