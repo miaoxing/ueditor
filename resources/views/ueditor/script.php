@@ -1,5 +1,5 @@
 <script>
-  require.config({
+  window.require && require.config({
     paths: {
       ueditor: 'plugins/ueditor/libs/neditor/i18n/zh-cn/zh-cn',
       'ueditor-all': 'plugins/ueditor/libs/neditor/neditor.all.min',
