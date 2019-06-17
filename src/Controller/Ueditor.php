@@ -21,7 +21,7 @@ class Ueditor extends \Miaoxing\Plugin\BaseController
 
         // 本地上传成功,接着上传到远程
         if ($result['state'] === 'SUCCESS' && $result['url']) {
-            $ret = wei()->file->upload(ltrim($result['url'], '/'));
+            $ret = wei()->file->upload('public' . $result['url']);
             if ($ret['code'] === 1) {
                 $result['url'] = $ret['url'];
             } else {
