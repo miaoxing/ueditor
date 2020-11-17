@@ -1,0 +1,8 @@
+{
+  "name": "@miaoxing/ueditor",
+  "version": "0.1.4",
+  "private": true,
+  "main": "index.js",
+  "author": "twinh",
+  "license": "MIT"
+}
