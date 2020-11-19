@@ -1,16 +1,10 @@
 <?php
 
-namespace Miaoxing\Ueditor\Controller;
+use Miaoxing\File\Service\File;
+use Miaoxing\Plugin\BaseController;
 
-use Wei\Request;
-
-class Ueditor extends \Miaoxing\Plugin\BaseController
-{
-    protected $guestPages = [
-        'ueditor', // 暂不用登录
-    ];
-
-    public function indexAction(Request $req)
+return new class extends BaseController {
+    public function get()
     {
         $basePath = $this->plugin->getById('ueditor')->getBasePath();
 
@@ -21,14 +15,19 @@ class Ueditor extends \Miaoxing\Plugin\BaseController
 
         // 本地上传成功,接着上传到远程
         if ($result['state'] === 'SUCCESS' && $result['url']) {
-            $ret = wei()->file->upload('public' . $result['url']);
-            if ($ret['code'] === 1) {
+            $ret = File::upload('public' . $result['url']);
+            if ($ret->isSuc()) {
                 $result['url'] = $ret['url'];
             } else {
                 $result['state'] = $ret['message'];
             }
         }
 
-        return $this->response->json($result);
+        return $this->res->json($result);
     }
-}
+
+    public function post()
+    {
+        return $this->get();
+    }
+};
