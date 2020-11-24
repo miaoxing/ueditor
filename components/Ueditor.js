@@ -9,7 +9,7 @@ class FormItemUeditor extends React.Component {
     }
 
     // Only set data for the first time
-    if (typeof prevProps.value === 'undefined') {
+    if (typeof prevProps.value === 'undefined' && typeof this.props.value !== 'undefined') {
       this.editor.ready(() => {
         this.editor.setContent(this.props.value);
       });
@@ -42,10 +42,6 @@ class FormItemUeditor extends React.Component {
         return this.props.debug
           ? this.createScript(neditorPath + '/neditor.all.js')
           : this.createScript(neditorPath + '/neditor.all.min.js')
-      }).then(() => {
-        return this.props.debug
-          ? this.createScript(neditorPath + '/neditor.parse.js')
-          : this.createScript(neditorPath + '/neditor.parse.min.js')
       });
     }
   }
@@ -71,7 +67,8 @@ class FormItemUeditor extends React.Component {
   }
 
   render() {
-    return <textarea name={this.props.id} {...this.props}/>;
+    const {debug, ...rest} = this.props;
+    return <textarea name={this.props.id} {...rest}/>;
   }
 }
 
