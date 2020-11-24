@@ -18062,11 +18062,11 @@ UE.plugins["list"] = function() {
 
            orgFocus = me.focus;
            orgBlur = me.blur;
- 
+
            me.focus = function(){
              sourceEditor.focus();
            };
- 
+
            me.blur = function(){
              orgBlur.call(me);
              sourceEditor.blur();
@@ -19322,7 +19322,7 @@ UE.plugins["autoheight"] = function() {
     isFullscreen = f;
   });
   me.addListener("destroy", function() {
-    domUtils.un(me.window, "scroll", fixedScrollTop);
+    domUtils.un(window, "scroll", fixedScrollTop);
     me.removeListener(
       "contentchange afterinserthtml keyup mouseup",
       adjustHeight
