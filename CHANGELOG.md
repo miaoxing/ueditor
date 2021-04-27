@@ -1,3 +1,19 @@
+## [0.1.9](https://github.com/miaoxing/ueditor/compare/v0.1.8...v0.1.9) (2021-04-27)
+
+
+### Bug Fixes
+
+* 解决隐藏的编辑器宽度为 0 ([5a4aaa8](https://github.com/miaoxing/ueditor/commit/5a4aaa8394694cd9b140cecd23e8369dfa18580b))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.2.13` to `0.3.0`
+* **@miaoxing/file:** upgrade from `0.1.8` to `0.1.9`
+
 ## [0.1.8](https://github.com/miaoxing/ueditor/compare/v0.1.7...v0.1.8) (2021-03-22)
 
 
