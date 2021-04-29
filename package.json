@@ -5,5 +5,12 @@
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": [],
+  "jest": {
+    "preset": "jest-preset-miaoxing"
+  },
+  "ciDependencies": {
+    "babel-preset-miaoxing": "miaoxing/babel-preset-miaoxing",
+    "@miaoxing/dev": "miaoxing/dev"
+  }
 }
