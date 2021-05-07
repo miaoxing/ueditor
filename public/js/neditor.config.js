@@ -1,3 +1,4 @@
+/* global $ */
 /**
  * neditor完整配置项
  * 可以在这里配置整个编辑器的特性
@@ -30,7 +31,7 @@
     UEDITOR_HOME_URL: URL,
 
     // 服务器统一请求接口路径
-    serverUrl: window.NEDITOR_UPLOAD || URL + "php/controller.php",
+    serverUrl: window.NEDITOR_UPLOAD || URL + 'php/controller.php',
 
     //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
     toolbars: [
@@ -44,7 +45,7 @@
         'simpleupload', 'insertimage', /* 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', /* 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background',*/ '|',
         /* 'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
         /*'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', /* '|',*/
-        /* 'print', 'preview', 'searchreplace', 'help',*/ 'drafts']
+        /* 'print', 'preview', 'searchreplace', 'help',*/ 'drafts'],
     ]
     //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
     //,labelMap:{
@@ -432,8 +433,8 @@
       tt: [],
       u: [],
       ul: ['class', 'style'],
-      video: ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style']
-    }
+      video: ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style'],
+    },
   };
 
   function getUEBasePath(docUrl, confUrl) {
@@ -444,7 +445,7 @@
   }
 
   function getConfigFilePath() {
-    var configPath = document.getElementsByTagName("script");
+    var configPath = document.getElementsByTagName('script');
 
     return configPath[configPath.length - 1].src;
   }
@@ -454,11 +455,11 @@
 
     if (/^(\/|\\\\)/.test(confUrl)) {
       basePath =
-        /^.+?\w(\/|\\\\)/.exec(docUrl)[0] + confUrl.replace(/^(\/|\\\\)/, "");
+        /^.+?\w(\/|\\\\)/.exec(docUrl)[0] + confUrl.replace(/^(\/|\\\\)/, '');
     } else if (!/^[a-z]+:/i.test(confUrl)) {
-      docUrl = docUrl.split("#")[0].split("?")[0].replace(/[^\\\/]+$/, "");
+      docUrl = docUrl.split('#')[0].split('?')[0].replace(/[^\\/]+$/, '');
 
-      basePath = docUrl + "" + confUrl;
+      basePath = docUrl + '' + confUrl;
     }
 
     return optimizationPath(basePath);
@@ -469,24 +470,24 @@
       tmp = null,
       res = [];
 
-    path = path.replace(protocol, "").split("?")[0].split("#")[0];
+    path = path.replace(protocol, '').split('?')[0].split('#')[0];
 
-    path = path.replace(/\\/g, "/").split(/\//);
+    path = path.replace(/\\/g, '/').split(/\//);
 
-    path[path.length - 1] = "";
+    path[path.length - 1] = '';
 
     while (path.length) {
-      if ((tmp = path.shift()) === "..") {
+      if ((tmp = path.shift()) === '..') {
         res.pop();
-      } else if (tmp !== ".") {
+      } else if (tmp !== '.') {
         res.push(tmp);
       }
     }
 
-    return protocol + res.join("/");
+    return protocol + res.join('/');
   }
 
   window.UE = {
-    getUEBasePath: getUEBasePath
+    getUEBasePath: getUEBasePath,
   };
 })();
