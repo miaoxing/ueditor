@@ -28,6 +28,7 @@
   },
   "extra": {
     "require-ci": {
+      "miaoxing/plugin": "miaoxing/plugin as 0.4.x-dev",
       "miaoxing/dev": "miaoxing/dev as 6.x-dev"
     }
   }
