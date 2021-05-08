@@ -30,6 +30,7 @@
     "require-ci": {
       "miaoxing/plugin": "miaoxing/plugin as 0.4.x-dev",
       "miaoxing/dev": "miaoxing/dev as 6.x-dev",
+      "miaoxing/phpstan-miaoxing": "miaoxing/phpstan-miaoxing as 0.1.x-dev",
       "miaoxing/file": "miaoxing/file as 0.1.x-dev"
     }
   }
