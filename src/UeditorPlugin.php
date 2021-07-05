@@ -15,7 +15,7 @@ class UeditorPlugin extends BasePlugin
     public function onAppInit()
     {
         // FIXME ueditor 上传文件是 POST 表单，不支持 JWT，改为 Session 登录
-        if ($this->req->getPathInfo() === '/ueditor') {
+        if ('/ueditor' === $this->req->getPathInfo()) {
             wei()->setConfig('user', [
                 'authClass' => SessionAuth::class,
             ]);
