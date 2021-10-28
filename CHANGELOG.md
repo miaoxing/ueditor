@@ -1,3 +1,20 @@
+## [0.1.13](https://github.com/miaoxing/ueditor/compare/v0.1.12...v0.1.13) (2021-10-28)
+
+
+### Bug Fixes
+
+* **ueditor:** ueditor 上传文件是 POST 表单，不支持 JWT，改为 Session 登录 ([98af651](https://github.com/miaoxing/ueditor/commit/98af651819b79c6c482fa47791bdd342e1963eb3))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.3.3` to `0.4.0`
+* **@miaoxing/file:** upgrade from `0.1.12` to `0.1.13`
+* **@miaoxing/dev:** upgrade from `7.0.1` to `8.0.0`
+
 ## [0.1.12](https://github.com/miaoxing/ueditor/compare/v0.1.11...v0.1.12) (2021-05-21)
 
 
