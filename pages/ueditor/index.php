@@ -3,7 +3,7 @@
 use Miaoxing\File\Service\File;
 use Miaoxing\Plugin\BaseController;
 
-return new class extends BaseController {
+return new class () extends BaseController {
     public function get()
     {
         $basePath = $this->plugin->getById('ueditor')->getBasePath();
@@ -14,7 +14,7 @@ return new class extends BaseController {
         $result = json_decode($result, true);
 
         // 本地上传成功,接着上传到远程
-        if ($result['state'] === 'SUCCESS' && $result['url']) {
+        if ('SUCCESS' === $result['state'] && $result['url']) {
             $ret = File::upload('public' . $result['url']);
             if ($ret->isSuc()) {
                 $result['url'] = $ret['url'];
