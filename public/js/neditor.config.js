@@ -20,7 +20,7 @@
    * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
    */
   window.UEDITOR_HOME_URL = '/plugins/ueditor/libs/neditor/';
-  window.NEDITOR_UPLOAD = $.url('ueditor');
+  window.NEDITOR_UPLOAD = $.apiUrl('ueditor');
   var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 
   /**
