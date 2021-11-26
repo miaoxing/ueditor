@@ -11,6 +11,12 @@ return new class () extends BaseController {
         ob_start();
         require $basePath . '/public/libs/neditor/php/controller.php';
         $result = ob_get_clean();
+
+        if ($this->req->getQuery('callback')) {
+            // Remove "callback()" wrapper
+            $result = substr($result, strlen($this->req->getQuery('callback')) + 1, -1);
+        }
+
         $result = json_decode($result, true);
 
         // 本地上传成功,接着上传到远程
@@ -23,7 +29,7 @@ return new class () extends BaseController {
             }
         }
 
-        return $this->res->json($result);
+        return $this->res->jsonp($result);
     }
 
     public function post()
