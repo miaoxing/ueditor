@@ -9055,8 +9055,12 @@ UE.ajax = (function() {
       }
     };
     if (method == "POST") {
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send(submitStr);
+      if (ajaxOpts.data && ajaxOpts.data instanceof FormData) {
+        xhr.send(ajaxOpts.data);
+      } else {
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(submitStr);
+      }
     } else {
       xhr.send(null);
     }
@@ -27385,35 +27389,21 @@ UE.plugin.register("simpleupload", function() {
             '/images/spacer.gif">'
         );
 
-        function callback() {
-          try {
-            var link,
-              json,
-              loader,
-              body = (iframe.contentDocument || iframe.contentWindow.document)
-                .body,
-              result = body.innerText || body.textContent || "";
-            json = new Function("return " + result)();
-            link = me.options.imageUrlPrefix + json.url;
-            if (json.state == "SUCCESS" && json.url) {
-              loader = me.document.getElementById(loadingId);
-              domUtils.removeClasses(loader, "loadingclass");
-              domUtils.on(loader,'load',function(){
-                 me.fireEvent('contentchange');
-              });
-              loader.setAttribute("src", link);
-              loader.setAttribute("_src", link);
-              loader.setAttribute("alt", json.original || "");
-              loader.removeAttribute("id");
-            } else {
-              showErrorLoader && showErrorLoader(json.state);
-            }
-          } catch (er) {
-            showErrorLoader &&
-              showErrorLoader(me.getLang("simpleupload.loadError"));
+        function callback(json) {
+          link = me.options.imageUrlPrefix + json.url;
+          if (json.state == "SUCCESS" && json.url) {
+            loader = me.document.getElementById(loadingId);
+            domUtils.removeClasses(loader, "loadingclass");
+            domUtils.on(loader,'load',function(){
+               me.fireEvent('contentchange');
+            });
+            loader.setAttribute("src", link);
+            loader.setAttribute("_src", link);
+            loader.setAttribute("alt", json.original || "");
+            loader.removeAttribute("id");
+          } else {
+            showErrorLoader && showErrorLoader(json.state);
           }
-          form.reset();
-          domUtils.un(iframe, "load", callback);
         }
         function showErrorLoader(title) {
           if (loadingId) {
@@ -27446,13 +27436,22 @@ UE.plugin.register("simpleupload", function() {
           return;
         }
 
-        domUtils.on(iframe, "load", callback);
-        form.action = utils.formatUrl(
+        var file = input.files[0];
+        var formData = new FormData();
+        formData.append(me.options.imageFieldName, file);
+
+        var url = utils.formatUrl(
           imageActionUrl +
-            (imageActionUrl.indexOf("?") == -1 ? "?" : "&") +
-            params
+          (imageActionUrl.indexOf("?") === -1 ? "?" : "&") +
+          params
         );
-        form.submit();
+        UE.ajax.request(url, {
+          method: 'POST',
+          data: formData,
+          onsuccess: function(xhr) {
+            callback(utils.str2json(xhr.responseText));
+          }
+        });
       });
 
       var stateTimer;
