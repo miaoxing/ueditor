@@ -8880,7 +8880,7 @@ UE.Editor.defaultOptions = function(editor) {
           );
 
         var configUrl = me.getActionUrl("config"),
-          isJsonp = utils.isCrossDomainUrl(configUrl);
+          isJsonp = false;
 
         /* 发出ajax请求 */
         me._serverConfigLoaded = false;
@@ -9054,6 +9054,9 @@ UE.ajax = (function() {
         }
       }
     };
+
+    xhr.setRequestHeader('Authorization', 'Bearer ' + window.localStorage.getItem('token'));
+
     if (method == "POST") {
       if (ajaxOpts.data && ajaxOpts.data instanceof FormData) {
         xhr.send(ajaxOpts.data);
@@ -25962,7 +25965,7 @@ UE.plugins["catchremoteimage"] = function() {
             (catcherActionUrl.indexOf("?") == -1 ? "?" : "&") +
             params
         ),
-        isJsonp = utils.isCrossDomainUrl(url),
+        isJsonp = false,
         opt = {
           method: "POST",
           dataType: isJsonp ? "jsonp" : "",
