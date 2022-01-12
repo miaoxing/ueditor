@@ -5,7 +5,10 @@
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
-  "dependencies": [],
+  "workspaces": [
+    "plugins/*"
+  ],
+  "dependencies": {},
   "jest": {
     "preset": "jest-preset-miaoxing"
   },
