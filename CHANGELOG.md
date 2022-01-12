@@ -1,3 +1,28 @@
+## [0.1.14](https://github.com/miaoxing/ueditor/compare/v0.1.13...v0.1.14) (2022-01-12)
+
+
+### Bug Fixes
+
+* **ueditor:** iframe 上传改为 xhr，解决跨域上传失败 ([1364b14](https://github.com/miaoxing/ueditor/commit/1364b14f45fda7c57ab32786496e1b5f8ed40c35))
+* **ueditor:** 获取 ueditor 接口改为 `$.apiUrl` ([ca39019](https://github.com/miaoxing/ueditor/commit/ca3901922246123868c278b38df7cd645634226a))
+* **ueditor:** 解决跨域 JSONP 解析返回值错误 ([72a64de](https://github.com/miaoxing/ueditor/commit/72a64dee9196a67342d36ddf5ae26cbe1e252cf2))
+
+
+### Features
+
+* **ueditor:** JSONP 请求改为 Ajax，由后端处理 CORS，请求头加上 `Authorization` ([983329f](https://github.com/miaoxing/ueditor/commit/983329f6c4e5c2a4f7802cc5a4deceed03f3c372))
+* **ueditor:** 增加 `admin-api/ueditor` 接口，以便后端直接调用 ([9ea2436](https://github.com/miaoxing/ueditor/commit/9ea2436d512225901f1d648b2b41275e87c5962e))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.4.0` to `0.5.0`
+* **@miaoxing/file:** upgrade from `0.1.13` to `0.1.14`
+* **@miaoxing/dev:** upgrade from `8.0.0` to `8.0.1`
+
 ## [0.1.13](https://github.com/miaoxing/ueditor/compare/v0.1.12...v0.1.13) (2021-10-28)
 
 
