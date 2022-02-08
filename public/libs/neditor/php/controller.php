@@ -7,6 +7,22 @@ error_reporting(\E_ERROR);
 header('Content-Type: text/html; charset=utf-8');
 
 $CONFIG = json_decode(preg_replace('/\\/\\*[\\s\\S]+?\\*\\//', '', file_get_contents('config.json', true)), true);
+
+$postfix = 'PathFormat';
+
+$publicDir = 'public';
+$length = strlen($publicDir);
+$path = \Miaoxing\File\Service\File::getRoot() . '/{yyyy}{mm}{dd}/{hh}{ii}{ss}{rand:6}';
+if (substr($path, 0, $length) === $publicDir) {
+    $path = substr($path, $length);
+}
+
+foreach ($CONFIG as $name => $value) {
+    if (substr($name, -strlen($postfix)) === $postfix) {
+        $CONFIG[$name] = $path;
+    }
+}
+
 $action = $_GET['action'];
 
 switch ($action) {
