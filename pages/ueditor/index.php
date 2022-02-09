@@ -21,9 +21,12 @@ return new class () extends BaseController {
 
         // 本地上传成功,接着上传到远程
         if ('SUCCESS' === $result['state'] && $result['url']) {
-            $ret = File::upload('public' . $result['url']);
+            $ret = File::saveLocal('public' . $result['url'], [
+                'origName' => $result['original'],
+                'size' => $result['size'],
+            ]);
             if ($ret->isSuc()) {
-                $result['url'] = $ret['url'];
+                $result['url'] = $ret['data']['url'];
             } else {
                 $result['state'] = $ret['message'];
             }
