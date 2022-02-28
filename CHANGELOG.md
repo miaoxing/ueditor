@@ -1,3 +1,19 @@
+## [0.1.16](https://github.com/miaoxing/ueditor/compare/v0.1.15...v0.1.16) (2022-02-28)
+
+
+### Features
+
+* **ueditor:** ueditor 接口使用和接口上传一样的目录 ([9eff849](https://github.com/miaoxing/ueditor/commit/9eff8490e38f4d0be46195aff6e0d01278ef8b8a))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.5.1` to `0.6.0`
+* **@miaoxing/file:** upgrade from `0.1.15` to `0.2.0`
+
 ## [0.1.15](https://github.com/miaoxing/ueditor/compare/v0.1.14...v0.1.15) (2022-02-05)
 
 
