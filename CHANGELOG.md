@@ -1,3 +1,19 @@
+## [0.1.22](https://github.com/miaoxing/ueditor/compare/v0.1.21...v0.1.22) (2022-07-02)
+
+
+### Bug Fixes
+
+* 解决 composer 2.2+ 默认不启用插件导致安装路径错误 ([a57df6e](https://github.com/miaoxing/ueditor/commit/a57df6e0994b6b175fcf8ab8428095da47e31573))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.6.5` to `0.6.6`
+* **@miaoxing/file:** upgrade from `0.3.4` to `0.3.5`
+
 ## [0.1.21](https://github.com/miaoxing/ueditor/compare/v0.1.20...v0.1.21) (2022-07-01)
 
 
