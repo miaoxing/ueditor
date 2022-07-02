@@ -26,6 +26,12 @@
   "require-dev": {
     "miaoxing/dev": "^8.1.2"
   },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "phpstan/extension-installer": true
+    }
+  },
   "extra": {
     "require-ci": {
       "wei/wei": "twinh/wei as 0.12.x-dev",
