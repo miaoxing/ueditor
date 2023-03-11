@@ -1,9 +1,16 @@
 <?php
 
+use Miaoxing\App\Middleware\CheckPagePermission;
 use Miaoxing\File\Service\File;
 use Miaoxing\Plugin\BaseController;
 
 return new class () extends BaseController {
+    public function init()
+    {
+        parent::init();
+        $this->removeMiddleware(CheckPagePermission::class);
+    }
+
     public function get()
     {
         $basePath = $this->plugin->getById('ueditor')->getBasePath();
