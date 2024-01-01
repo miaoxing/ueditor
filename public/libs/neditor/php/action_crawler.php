@@ -27,14 +27,14 @@ if (isset($_POST[$fieldName])) {
 foreach ($source as $imgUrl) {
     $item = new Uploader($imgUrl, $config, 'remote');
     $info = $item->getFileInfo();
-    array_push($list, [
+    $list[] = [
         'state' => $info['state'],
         'url' => $info['url'],
         'size' => $info['size'],
         'title' => htmlspecialchars($info['title']),
         'original' => htmlspecialchars($info['original']),
         'source' => htmlspecialchars($imgUrl),
-    ]);
+    ];
 }
 
 /* 返回抓取数据 */

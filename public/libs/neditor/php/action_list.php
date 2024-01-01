@@ -46,10 +46,10 @@ $len = count($files);
 for ($i = min($end, $len) - 1, $list = []; $i < $len && $i >= 0 && $i >= $start; --$i) {
     $list[] = $files[$i];
 }
-//倒序
-//for ($i = $end, $list = array(); $i < $len && $i < $end; $i++){
+// 倒序
+// for ($i = $end, $list = array(); $i < $len && $i < $end; $i++){
 //    $list[] = $files[$i];
-//}
+// }
 
 /* 返回数据 */
 $result = json_encode([
