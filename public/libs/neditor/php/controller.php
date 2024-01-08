@@ -12,7 +12,7 @@ $postfix = 'PathFormat';
 
 $publicDir = 'public';
 $length = strlen($publicDir);
-$path = \Miaoxing\File\Service\File::getRoot() . '/{yyyy}{mm}{dd}/{hh}{ii}{ss}{rand:6}';
+$path = Miaoxing\File\Service\File::getRoot() . '/{yyyy}{mm}{dd}/{hh}{ii}{ss}{rand:6}';
 if (substr($path, 0, $length) === $publicDir) {
     $path = substr($path, $length);
 }
