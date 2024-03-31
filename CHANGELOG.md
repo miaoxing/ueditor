@@ -1,3 +1,15 @@
+## [0.1.45](https://github.com/miaoxing/ueditor/compare/v0.1.44...v0.1.45) (2024-03-31)
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.8.2` to `0.8.3`
+* **@miaoxing/file:** upgrade from `0.3.27` to `0.3.28`
+* **@miaoxing/dev:** upgrade from `9.1.0` to `9.1.1`
+
 ## [0.1.44](https://github.com/miaoxing/ueditor/compare/v0.1.43...v0.1.44) (2024-02-29)
 
 
