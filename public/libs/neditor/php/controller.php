@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Chongqing');
 error_reporting(\E_ERROR);
 header('Content-Type: text/html; charset=utf-8');
 
-$CONFIG = json_decode(preg_replace('/\\/\\*[\\s\\S]+?\\*\\//', '', file_get_contents('config.json', true)), true);
+$CONFIG = json_decode(preg_replace('/\/\*[\s\S]+?\*\//', '', file_get_contents('config.json', true)), true);
 
 $postfix = 'PathFormat';
 
@@ -64,7 +64,7 @@ switch ($action) {
 
 /* 输出结果 */
 if (isset($_GET['callback'])) {
-    if (preg_match('/^[\\w_]+$/', $_GET['callback'])) {
+    if (preg_match('/^[\w_]+$/', $_GET['callback'])) {
         echo htmlspecialchars($_GET['callback']) . '(' . $result . ')';
     } else {
         echo json_encode([

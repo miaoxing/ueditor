@@ -203,7 +203,7 @@ class Uploader
         readfile($imgUrl . '?' . $queryString, false, $context);
         $img = ob_get_contents();
         ob_end_clean();
-        preg_match('/[\\/]([^\\/]*)[\\.]?[^\\.\\/]*$/', $imgUrl, $m);
+        preg_match('/[\/]([^\/]*)[\.]?[^\.\/]*$/', $imgUrl, $m);
 
         $this->oriName = $m ? $m[1] : '';
         $this->fileSize = strlen($img);
@@ -282,13 +282,13 @@ class Uploader
 
         // 过滤文件名的非法字符,并替换文件名
         $oriName = substr($this->oriName, 0, strrpos($this->oriName, '.'));
-        $oriName = preg_replace('/[\\|\\?"\\<\\>\\/\\*\\\\]+/', '', $oriName);
+        $oriName = preg_replace('/[\|\?"\<\>\/\*\\\]+/', '', $oriName);
         $format = str_replace('{filename}', $oriName, $format);
 
         // 替换随机字符串
         $randNum = rand(1, 10000000000) . rand(1, 10000000000);
-        if (preg_match('/\\{rand\\:([\\d]*)\\}/i', $format, $matches)) {
-            $format = preg_replace('/\\{rand\\:[\\d]*\\}/i', substr($randNum, 0, $matches[1]), $format);
+        if (preg_match('/\{rand\:([\d]*)\}/i', $format, $matches)) {
+            $format = preg_replace('/\{rand\:[\d]*\}/i', substr($randNum, 0, $matches[1]), $format);
         }
 
         if ($this->fileType) {

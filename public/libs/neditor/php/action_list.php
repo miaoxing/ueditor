@@ -83,7 +83,7 @@ function getfiles($path, $allowFiles, &$files = [])
             if (is_dir($path2)) {
                 getfiles($path2, $allowFiles, $files);
             } else {
-                if (preg_match('/\\.(' . $allowFiles . ')$/i', $file)) {
+                if (preg_match('/\.(' . $allowFiles . ')$/i', $file)) {
                     $files[] = [
                         'url' => substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
                         'mtime' => filemtime($path2),
