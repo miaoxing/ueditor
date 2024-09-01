@@ -1,3 +1,20 @@
+## [0.1.51](https://github.com/miaoxing/ueditor/compare/v0.1.50...v0.1.51) (2024-09-01)
+
+
+### Features
+
+* 插件增加 wei 命令行入口 ([6305832](https://github.com/miaoxing/ueditor/commit/6305832b44f11cd8d385b1785821a99522944878))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.10.3` to `0.10.4`
+* **@miaoxing/file:** upgrade from `0.3.33` to `0.3.34`
+* **@miaoxing/dev:** upgrade from `9.1.3` to `9.2.0`
+
 ## [0.1.50](https://github.com/miaoxing/ueditor/compare/v0.1.49...v0.1.50) (2024-08-03)
 
 
