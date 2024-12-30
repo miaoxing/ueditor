@@ -8,8 +8,8 @@
   ],
   "license": "MIT",
   "require": {
-    "miaoxing/app": "^0.10.7",
-    "miaoxing/file": "^0.3.37"
+    "miaoxing/app": "^0.10.8",
+    "miaoxing/file": "^0.3.38"
   },
   "autoload": {
     "psr-4": {
@@ -24,7 +24,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "miaoxing/dev": "^9.2.0"
+    "miaoxing/dev": "^9.3.0"
   },
   "config": {
     "allow-plugins": {
